@@ -12,7 +12,8 @@
     <link rel="icon" href="img/favicon.png" type="image/x-icon" />
     <script type="text/javascript" src="js/index.js"></script>
   </head>
-  <body class="grid-container">
+  <body class="grid-container bg-image">
+
 
     <header>
       <nav>
@@ -101,12 +102,12 @@
 
     <section class="hotel-section">
       <h4>Dichtstbijzijnde hotels</h4>
-      <div class="content-box hotel-box">
+      <div class="hotel-box">
         <div class="hotel-title-top">
           <span id="hotel-title">Hotels - Amsterdam</span>
           <img src="img/hotel/search.svg" id="search-img" alt="">
         </div>
-        <div class="hotels">
+        <div class="hotels first-hotel">
           <img src="img/hotel/phone.svg" id="phone" alt="">
           <img src="img/hotel/title+rating1.svg" class="rating" alt="">
           <img src="img/hotel/afst+arrow1.svg" class="afst" alt="">
@@ -127,10 +128,22 @@
 
     <section class="alarm-section">
       <h4>Notificaties</h4>
-      <div class="content-box alarm-box">
-        <img src="img/alarm.svg" alt="">
+      <div class="alarm-box">
+        <img src="img/alarm.svg" id="alarm-img" alt="">
+        <div class="notificatie">
+          <h4>Zet notificaties aan</h4>
+          <span class="ondertitel">Wanneer er een noodgeval is wordt u zo snel mogelijk bericht!</span>
+        </div>
       </div>
     </section>
+
+    <!-- GRID SECTION FOOTER -->
+      <footer class="footer">
+        <p>
+          &copy;2020 - <strong>Joël Timmers</strong><br />
+          <small>In opdracht van de HHS - SpaceX - Challenge 3</small>
+        </p>
+      </footer>
 
   </body>
 </html>
