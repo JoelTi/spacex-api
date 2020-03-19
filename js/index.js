@@ -9,8 +9,7 @@ function showMap() {
 
   var config = {
     key: 'YGOSC3vaMIRj32nNnQoYktX5D3svhpM2',
-    style: 'tomtom://vector/1/relative',
-    refresh: 30000
+    style: 'tomtom://vector/1/relative'
   };
 
   map.on('load', function() {
