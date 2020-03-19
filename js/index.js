@@ -139,8 +139,10 @@ function myChart() {
     }
   });
 }
+
+
 window.onload = function() {
+  myChart();
   showMap();
   setTimer();
-  myChart();
 }
