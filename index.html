@@ -10,12 +10,16 @@
 
     <link rel="stylesheet" href="css/index.css" type="text/css" />
     <link rel="icon" href="img/favicon.png" type="image/x-icon" />
+
     <!-- evt openlayers api map -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css" />
+
     <!-- tomtom api -->
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.38.0/maps/maps.css'/>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.38.0/maps/maps-web.min.js"></script>
+
     <script type="text/javascript" src="js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
   </head>
   <body class="grid-container bg-image">
     <header>
@@ -81,21 +85,21 @@
     <section class="time-section">
       <h4>Tijd na de landing</h4>
       <div class="content-box time-box">
-        <span>13:65</span>
+        <span><time>01:32:19</time></span>
         <img src="img/manonrocket.svg" id="rocketman" alt="">
       </div>
     </section>
 
     <section class="herstel-section">
       <h4>Herstel</h4>
-      <div class="content-box herstel-box">
-
+      <div class="herstel-box">
+        <canvas id="myChart"></canvas>
       </div>
     </section>
 
     <section class="landing-section">
       <h4>Landingsplekken</h4>
-      <div class="content-box landings-box">
+      <div class="landings-box">
         <div id='map' class='map'></div>
       </div>
 

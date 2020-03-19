@@ -5,6 +5,7 @@ body {
   margin: 0;
   font-family: 'Rubik', sans-serif;
   background-color: #F5F6FA;
+  min-width: 340px;
 }
 
 /*///// GRID STRUCTUUR /////*/
@@ -153,9 +154,9 @@ h3 {
   padding: 0px 10px;
 }
 h4 {
-  font-size: 20px; /* 5vw */
+  font-size: 18px; /* 5vw */
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   color: #000;
 }
 .content-box {
@@ -171,14 +172,14 @@ h4 {
   align-items: center;
 }
 .time-box > span {
-  font-size: 50px;
-  margin-left: 40px;
+  font-size: 40px;
+  margin-left: 35px;
   font-weight: 500;
 }
 #rocketman {
   position: relative;
   top: -40px;
-  left: -40px;
+  left: -30px;
 }
 
 /*///// HERSTEL CHART SECTION /////*/
@@ -190,7 +191,16 @@ h4 {
 }
 .herstel-box {
   background: linear-gradient(150deg, rgba(196,96,239,1) 0%, rgba(67,10,255,1) 100%);
-  height: 350px;
+  height: auto;
+  padding: 30px 50px 30px 20px;
+  max-width: 100%;
+  box-shadow: 0px 13px 20px 0px #D6D6D6;
+  border-radius: 8px;
+}
+#myChart {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /*///// LANDING SECTION /////*/
@@ -202,6 +212,9 @@ h4 {
 }
 .landings-box {
   height: 300px;
+  max-width: 100%;
+  box-shadow: 0px 13px 20px 0px #D6D6D6;
+  border-radius: 8px;
 }
 .landings-box:first-of-type {
   margin-bottom: 50px;
@@ -209,6 +222,7 @@ h4 {
 #map {
   height: 100%;
   width: 100%;
+  border-radius: 8px;
 }
 
 
