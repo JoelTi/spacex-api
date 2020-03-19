@@ -10,11 +10,14 @@
 
     <link rel="stylesheet" href="css/index.css" type="text/css" />
     <link rel="icon" href="img/favicon.png" type="image/x-icon" />
+    <!-- evt openlayers api map -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css" />
+    <!-- tomtom api -->
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.38.0/maps/maps.css'/>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.38.0/maps/maps-web.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
   </head>
   <body class="grid-container bg-image">
-
-
     <header>
       <nav>
         <img src="img/menu.svg" id="menubars" alt="">
@@ -93,8 +96,9 @@
     <section class="landing-section">
       <h4>Landingsplekken</h4>
       <div class="content-box landings-box">
-
+        <div id='map' class='map'></div>
       </div>
+
       <div class="content-box landings-box">
 
       </div>

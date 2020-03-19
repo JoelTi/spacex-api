@@ -186,6 +186,7 @@ h4 {
   grid-column: 1/13;
   grid-row: 4;
   padding: 0px 10px;
+  margin-top: 50px;
 }
 .herstel-box {
   background: linear-gradient(150deg, rgba(196,96,239,1) 0%, rgba(67,10,255,1) 100%);
@@ -197,12 +198,17 @@ h4 {
   grid-column: 1/13;
   grid-row: 5;
   padding: 0px 10px;
+  margin-top: 50px;
 }
 .landings-box {
   height: 300px;
 }
 .landings-box:first-of-type {
   margin-bottom: 50px;
+}
+#map {
+  height: 100%;
+  width: 100%;
 }
 
 
