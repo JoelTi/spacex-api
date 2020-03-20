@@ -95,7 +95,7 @@ function myChart() {
           left:0,
           right:0,
           bottom:0,
-          top:0
+          top:40
         }
       },
       tooltips:{
@@ -140,9 +140,35 @@ function myChart() {
   });
 }
 
+function getWeather() {
+
+  $('.weatherTemp').html('');
+  $('.weatherGevTemp').html('');
+  $('.weatherWind').html('');
+  $('.weatherVisa').html('');
+
+  var cityName = $('#cityName').val();
+  var apiCall = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&appid=2e01b71c029b8c3583b3b30f67650ee5';
+
+  $.getJSON(apiCall, weatherCallback);
+
+  function weatherCallback(weatherData) {
+    var cityName = weatherData.name;
+    var country = weatherData.sys.country;
+    var temp = weatherData.main.temp;
+    var gevTemp = weatherData.main.feels_like;
+    var windSpeed = weatherData.wind.speed;
+    var visibility = weatherData.visibility;
+    $('.weatherTemp').append(temp + " °C");
+    $('.weatherGevTemp').append(gevTemp + " °C");
+    $('.weatherWind').append(windSpeed + " m/s");
+    $('.weatherVisa').append(visibility + " lux");
+  }
+}
 
 window.onload = function() {
   myChart();
   showMap();
   setTimer();
+  weatherCallback(weatherData);
 }

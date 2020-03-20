@@ -18,6 +18,11 @@
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.38.0/maps/maps.css'/>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.38.0/maps/maps-web.min.js"></script>
 
+    <!-- weather api -->
+    <script src="https://code.jquery.com/jquery-3.0.0.js">
+
+    </script>
+
     <!-- chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
@@ -29,9 +34,16 @@
         <img src="img/melding.svg" id="melding" alt="">
       </nav>
       <div class="space"></div>
-      <h1>Dashboard</h1>
-      <h2>SpaceX</h2>
-      <a href="#" class="btn-inloggen">Inloggen</a>
+      <div class="header-flex">
+        <div class="header-title">
+          <h1>Dashboard</h1>
+          <h2>SpaceX</h2>
+        </div>
+        <div class="header-weer">
+          <input type="text" id="cityName" class="weer-input" placeholder="Typ hier je plaatsnaam in" />
+          <a href="#" id="btn-weergeven" onclick="getWeather()">Geef weer!</a>
+        </div>
+      </div>
     </header>
 
     <section class="slide-section">
@@ -45,7 +57,7 @@
               <span class="ondertitel">Graden</span>
             </div>
           </div>
-          <div class="weerinfo">15.6 °C</div>
+          <div contenteditable="true" data-placeholder="00.00 °C" class="weerinfo weatherTemp placeholder"></div>
         </div>
         <!-- slide-two -->
         <div class="card">
@@ -56,7 +68,7 @@
               <span class="ondertitel">Graden</span>
             </div>
           </div>
-          <div class="weerinfo">15.6 °C</div>
+          <div contenteditable="true" data-placeholder="00.00 °C" class="weerinfo weatherGevTemp placeholder"></div>
         </div>
         <!-- slide-three -->
         <div class="card">
@@ -67,7 +79,7 @@
               <span class="ondertitel">Meter per sec.</span>
             </div>
           </div>
-          <div class="weerinfo">15.6 °C</div>
+          <div contenteditable="true" data-placeholder="00.00 m/s" class="weerinfo weatherWind placeholder"></div>
         </div>
         <!-- slide-four -->
         <div class="card">
@@ -78,7 +90,7 @@
               <span class="ondertitel">Lux</span>
             </div>
           </div>
-          <div class="weerinfo">15.6 °C</div>
+          <div contenteditable="true" data-placeholder="00.00 lux" class="weerinfo weatherVisa placeholder"></div>
         </div>
       </div>
     </section>
@@ -94,6 +106,13 @@
     <section class="herstel-section">
       <h4>Herstel</h4>
       <div class="herstel-box">
+        <div class="herstel-title">
+          <img src="img/herstel.svg" id="herstel-img" alt="">
+          <header>
+            <h3>Spierherstel</h3>
+            <span class="ondertitel">Spierherstel na de landing</span>
+          </header>
+        </div>
         <canvas id="myChart"></canvas>
       </div>
     </section>
