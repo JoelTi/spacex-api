@@ -147,6 +147,7 @@ function getWeather() {
   $('.weatherGevTemp').html('');
   $('.weatherWind').html('');
   $('.weatherVisa').html('');
+  $('.weatherPress').html('');
 
   var cityName = $('#cityName').val();
   var apiCall = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&lang=nl&appid=2e01b71c029b8c3583b3b30f67650ee5';
@@ -162,12 +163,14 @@ function getWeather() {
     var gevTemp = weatherData.main.feels_like;
     var windSpeed = weatherData.wind.speed;
     var visibility = weatherData.visibility;
+    var pressure = weatherData.main.pressure;
 
     $('.weatherDes').append(description);
     $('.weatherTemp').append(temp + " °C");
     $('.weatherGevTemp').append(gevTemp + " °C");
     $('.weatherWind').append(windSpeed + " m/s");
-    $('.weatherVisa').append(visibility + " lux");
+    $('.weatherVisa').append(visibility + " m");
+    $('.weatherPress').append(pressure + " hPa");
   }
 }
 
