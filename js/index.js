@@ -18,16 +18,13 @@ function showMap() {
   map.on('load', function() {
     map.addTier(new tt.TrafficFlowTilesTier(config));
   });
-  map.addControl(new tt.FullscreenControl({
-    container: document.querySelector('body')
-  }));
   map.addControl(new tt.GeolocateControl({
    positionOptions: {
-       enableHighAccuracy: true
+    enableHighAccuracy: true
    },
-   trackUserLocation: true
+    trackUserLocation: true
   }));
-  
+
 }
 
 function setTimer() {
