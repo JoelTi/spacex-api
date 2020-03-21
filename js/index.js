@@ -1,4 +1,7 @@
 function showMap() {
+
+
+
   var map = tt.map({
     key: 'YGOSC3vaMIRj32nNnQoYktX5D3svhpM2',
     container: 'map',
@@ -15,6 +18,16 @@ function showMap() {
   map.on('load', function() {
     map.addTier(new tt.TrafficFlowTilesTier(config));
   });
+  map.addControl(new tt.FullscreenControl({
+    container: document.querySelector('body')
+  }));
+  map.addControl(new tt.GeolocateControl({
+   positionOptions: {
+       enableHighAccuracy: true
+   },
+   trackUserLocation: true
+  }));
+  
 }
 
 function setTimer() {
