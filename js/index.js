@@ -56,7 +56,7 @@ function myChart() {
       labels:['1 mnd','','3 mnd','','','6 mnd','','','9 mnd','','','12 mnd' ],
       datasets:[{
         data:[
-          20,
+          17,
           32,
           37,
           42,
@@ -71,9 +71,10 @@ function myChart() {
         ],
         backgroundColor:'#fff',
         pointBackgroundColor: '#fff',
-        pointHoverRadius: 4,
+        pointRadius: 5,
+        pointHoverRadius: 6,
         pointHoverBackgroundColor: '#fff',
-        borderWidth: 4,
+        borderWidth: 0,
         borderColor:'#fff',
       }]
     },
