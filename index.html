@@ -15,21 +15,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css" />
 
     <!-- tomtom api -->
-    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.38.0/maps/maps.css'/>
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.38.0/maps/maps-web.min.js"></script>
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.49.1/maps/maps.css'/>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.49.1/maps/maps-web.min.js"></script>
 
     <!-- weather api -->
     <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+
     <script type="text/javascript" src="js/index.js"></script>
   </head>
   <body class="grid-container bg-image">
     <header>
       <nav>
-        <img src="img/menu.svg" id="menubars" alt="">
-        <img src="img/melding.svg" id="melding" alt="">
+        <img src="img/menu.svg" id="menubars" alt="" />
+        <img src="img/melding.svg" id="melding" alt="" />
       </nav>
       <div class="space"></div>
       <div class="header-flex">
@@ -38,8 +40,8 @@
           <h2>SpaceX</h2>
         </div>
         <div class="header-weer">
-          <input type="text" id="cityName" class="weer-input" placeholder="Typ hier je plaatsnaam in" />
-          <a href="#" id="btn-weergeven" onclick="getWeather()">Geef weer!</a>
+          <input type="text" id="cityName" class="weer-input" placeholder="Typ hier je plaatsnaam in..." />
+          <a href="#" id="btn-weergeven" onclick="getAPIdata()" >Geef weer!</a>
         </div>
       </div>
     </header>
@@ -49,68 +51,68 @@
         <!-- slide-one -->
         <div class="card">
           <div class="top-card">
-            <img src="img/icons/description.svg" class="card-icon" alt="">
+            <img src="img/icons/description.svg" class="card-icon" alt="" />
             <div class="title">
               <h3>Beschrijving</h3>
               <span class="ondertitel"></span>
             </div>
           </div>
-          <div contenteditable="false" data-placeholder="..." class="weerinfo weatherDes placeholder"></div>
+          <div contenteditable="false" data-placeholder="..." class="weerinfo weatherDes placeholder" id="weatherDes" ></div>
         </div>
         <!-- slide-two -->
         <div class="card">
           <div class="top-card">
-            <img src="img/icons/temp.svg" class="card-icon" alt="">
+            <img src="img/icons/temp.svg" class="card-icon" alt="" />
             <div class="title">
               <h3>Temperatuur</h3>
               <span class="ondertitel">Graden</span>
             </div>
           </div>
-          <div contenteditable="false" data-placeholder="00.00 °C" class="weerinfo weatherTemp placeholder"></div>
+          <div contenteditable="false" data-placeholder="00.00 °C" class="weerinfo weatherTemp placeholder" id="weatherTemp"></div>
         </div>
         <!-- slide-three -->
         <div class="card">
           <div class="top-card">
-            <img src="img/icons/gev-temp.svg" class="card-icon" alt="">
+            <img src="img/icons/gev-temp.svg" class="card-icon" alt="" />
             <div class="title">
               <h3>Gevoels-<br />temperatuur</h3>
               <span class="ondertitel">Graden</span>
             </div>
           </div>
-          <div contenteditable="false" data-placeholder="00.00 °C" class="weerinfo weatherGevTemp placeholder"></div>
+          <div contenteditable="false" data-placeholder="00.00 °C" class="weerinfo weatherGevTemp placeholder" id="weatherGevTemp"></div>
         </div>
         <!-- slide-four -->
         <div class="card">
           <div class="top-card">
-            <img src="img/icons/wind.svg" class="card-icon" alt="">
+            <img src="img/icons/wind.svg" class="card-icon" alt="" />
             <div class="title">
               <h3>Windsnelheid</h3>
               <span class="ondertitel">Meter per sec.</span>
             </div>
           </div>
-          <div contenteditable="false" data-placeholder="00.00 m/s" class="weerinfo weatherWind placeholder"></div>
+          <div contenteditable="false" data-placeholder="00.00 m/s" class="weerinfo weatherWind placeholder" id="weatherWind"></div>
         </div>
         <!-- slide-five -->
         <div class="card">
           <div class="top-card">
-            <img src="img/icons/visibility.svg" class="card-icon" alt="">
+            <img src="img/icons/visibility.svg" class="card-icon" alt="" />
             <div class="title">
               <h3>Zichtbaarheid</h3>
               <span class="ondertitel">Meter</span>
             </div>
           </div>
-          <div contenteditable="false" data-placeholder="0 m" class="weerinfo weatherVisa placeholder"></div>
+          <div contenteditable="false" data-placeholder="0 m" class="weerinfo weatherVisa placeholder" id="weatherVisa"></div>
         </div>
         <!-- slide-six -->
         <div class="card">
           <div class="top-card">
-            <img src="img/icons/luchtdruk.svg" class="card-icon" alt="">
+            <img src="img/icons/luchtdruk.svg" class="card-icon" alt="" />
             <div class="title">
               <h3>Luchtdruk</h3>
               <span class="ondertitel">Hectopascal</span>
             </div>
           </div>
-          <div contenteditable="false" data-placeholder="0 hPa" class="weerinfo weatherPress placeholder"></div>
+          <div contenteditable="false" data-placeholder="0 hPa" class="weerinfo weatherPress placeholder" id="weatherPress"></div>
         </div>
       </div>
     </section>
@@ -119,7 +121,7 @@
       <h4>Tijd na de landing</h4>
       <div class="time-box">
         <span><time>01:32:19</time></span>
-        <img src="img/manonrocket.svg" id="rocketman" alt="">
+        <img src="img/manonrocket.svg" id="rocketman" alt="" />
       </div>
     </section>
 
@@ -127,7 +129,7 @@
       <h4>Herstel</h4>
       <div class="herstel-box">
         <div class="herstel-title">
-          <img src="img/herstel.svg" id="herstel-img" alt="">
+          <img src="img/herstel.svg" id="herstel-img" alt="" />
           <header>
             <h3>Spierherstel</h3>
             <span class="ondertitel">Spierherstel na de landing</span>
@@ -139,7 +141,6 @@
 
     <section class="landing-section">
       <h4>Landingsplekken</h4>
-
       <div class="landings-box">
         <div id='map' class='map'></div>
       </div>
@@ -152,42 +153,44 @@
         <div class="hotel-top">
           <div class="hotel-title-top">
             <span id="hotel-title">Hotels - Amsterdam</span>
-            <img src="img/hotel/search.svg" id="search-img" alt="">
+            <img src="img/hotel/search.svg" id="search-img" alt="" />
           </div>
           <div class="hotels first-hotel">
             <div class="phone-hotel">
-              <img src="img/hotel/phone.svg" id="phone" alt="">
-              <img src="img/hotel/title+rating1.svg" class="rating" alt="">
+              <img src="img/hotel/phone.svg" id="phone" alt="" />
+              <img src="img/hotel/title+rating1.svg" class="rating" alt="" />
             </div>
-            <img src="img/hotel/afst+arrow1.svg" class="afst" alt="">
+            <img src="img/hotel/afst+arrow1.svg" class="afst" alt="" />
           </div>
           <div class="hotels">
             <div class="phone-hotel">
-              <img src="img/hotel/phone.svg" id="phone" alt="">
-              <img src="img/hotel/title+rating2.svg" class="rating" alt="">
+              <img src="img/hotel/phone.svg" id="phone" alt="" />
+              <img src="img/hotel/title+rating2.svg" class="rating" alt="" />
             </div>
-            <img src="img/hotel/afst+arrow2.svg" class="afst" alt="">
+            <img src="img/hotel/afst+arrow2.svg" class="afst" alt="" />
           </div>
           <div class="hotels">
             <div class="phone-hotel">
-              <img src="img/hotel/phone.svg" id="phone" alt="">
-              <img src="img/hotel/title+rating3.svg" class="rating" alt="">
+              <img src="img/hotel/phone.svg" id="phone" alt="" />
+              <img src="img/hotel/title+rating3.svg" class="rating" alt="" />
             </div>
-            <img src="img/hotel/afst+arrow3.svg" class="afst" alt="">
+            <img src="img/hotel/afst+arrow3.svg" class="afst" alt="" />
           </div>
           <div class="hotels">
             <div class="phone-hotel">
-              <img src="img/hotel/phone.svg" id="phone" alt="">
-              <img src="img/hotel/title+rating4.svg" class="rating" alt="">
+              <img src="img/hotel/phone.svg" id="phone" alt="" />
+              <img src="img/hotel/title+rating4.svg" class="rating" alt="" />
             </div>
-            <img src="img/hotel/afst+arrow4.svg" class="afst" alt="">
+            <img src="img/hotel/afst+arrow4.svg" class="afst" alt="" />
           </div>
         </div>
         <div class="">
-          <img src="img/hotel/arrow-down.svg" id="arrow-down" alt="">
+          <img src="img/hotel/arrow-down.svg" id="arrow-down" alt="" />
         </div>
       </div>
     </section>
+
+
 
     <section class="video-section">
       <h4>Weet je nog?</h4>
@@ -203,17 +206,22 @@
       <h4>Notificaties</h4>
       <div class="alarm-box">
         <div class="alarm">
-          <img src="img/alarm.svg" id="alarm-img" alt="">
+          <img src="img/alarm.svg" id="alarm-img" alt="" />
           <div class="notificatie">
             <h4>Zet notificaties aan</h4>
             <span class="ondertitel">Wanneer er een noodgeval is wordt u zo snel mogelijk bericht!</span>
           </div>
         </div>
         <div class="alarm-arrow">
-          <img src="img/alarm-arrow-right.svg" id="arrow-right" alt="">
+          <img src="img/alarm-arrow-right.svg" id="arrow-right" alt="" />
         </div>
       </div>
     </section>
+
+    <!-- <section class="restaurants">
+      <div class="widget_wrap" style="width:100%;height:500px;display:inline-block;"><iframe src="https://www.zomato.com/widgets/res_search_widget.php?city_id=322&language_id=1&theme=dark&widgetType=custom&sort=popularity" style="position:relative;width:100%;height:100%;" border="0" frameborder="0"></iframe></div>
+    </section> -->
+
 
     <!-- GRID SECTION FOOTER -->
       <footer class="footer">

@@ -1,7 +1,4 @@
 function showMap() {
-
-
-
   var map = tt.map({
     key: 'YGOSC3vaMIRj32nNnQoYktX5D3svhpM2',
     container: 'map',
@@ -20,7 +17,7 @@ function showMap() {
   });
   map.addControl(new tt.GeolocateControl({
    positionOptions: {
-    enableHighAccuracy: true
+     enableHighAccuracy: true
    },
     trackUserLocation: true
   }));
@@ -151,43 +148,89 @@ function myChart() {
   });
 }
 
-function getWeather() {
+// function getWeather() {
+//
+//   $('.weatherDes').html('');
+//   $('.weatherTemp').html('');
+//   $('.weatherGevTemp').html('');
+//   $('.weatherWind').html('');
+//   $('.weatherVisa').html('');
+//   $('.weatherPress').html('');
+//
+//   var cityName = $('#cityName').val();
+//   var apiCall = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&lang=nl&appid=2e01b71c029b8c3583b3b30f67650ee5';
+//
+//   $.getJSON(apiCall, weatherCallback);
+//
+//   function weatherCallback(weatherData) {
+//     var cityName = weatherData.name;
+//     var country = weatherData.sys.country;
+//
+//     var description = weatherData.weather[0].description;
+//     var temp = weatherData.main.temp;
+//     var gevTemp = weatherData.main.feels_like;
+//     var windSpeed = weatherData.wind.speed;
+//     var visibility = weatherData.visibility;
+//     var pressure = weatherData.main.pressure;
+//
+//     $('.weatherDes').append(description);
+//     $('.weatherTemp').append(temp + " °C");
+//     $('.weatherGevTemp').append(gevTemp + " °C");
+//     $('.weatherWind').append(windSpeed + " m/s");
+//     $('.weatherVisa').append(visibility + " m");
+//     $('.weatherPress').append(pressure + " hPa");
+//   }
+// }
 
-  $('.weatherDes').html('');
-  $('.weatherTemp').html('');
-  $('.weatherGevTemp').html('');
-  $('.weatherWind').html('');
-  $('.weatherVisa').html('');
-  $('.weatherPress').html('');
 
-  var cityName = $('#cityName').val();
-  var apiCall = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&lang=nl&appid=2e01b71c029b8c3583b3b30f67650ee5';
+function getAPIdata() {
+	var cityName = document.getElementById('cityName').value;
+	var request = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&lang=nl&appid=2e01b71c029b8c3583b3b30f67650ee5';
 
-  $.getJSON(apiCall, weatherCallback);
+	fetch(request)
+	.then(function(response) {
+		if(!response.ok) throw Error(response.statusText);
+		return response.json();
+	})
 
-  function weatherCallback(weatherData) {
-    var cityName = weatherData.name;
-    var country = weatherData.sys.country;
+	.then(function(response) {
+		onAPISucces(response);
+	})
 
-    var description = weatherData.weather[0].description;
-    var temp = weatherData.main.temp;
-    var gevTemp = weatherData.main.feels_like;
-    var windSpeed = weatherData.wind.speed;
-    var visibility = weatherData.visibility;
-    var pressure = weatherData.main.pressure;
+	.catch(function (error) {
+		onAPIError(error);
+	});
+}
 
-    $('.weatherDes').append(description);
-    $('.weatherTemp').append(temp + " °C");
-    $('.weatherGevTemp').append(gevTemp + " °C");
-    $('.weatherWind').append(windSpeed + " m/s");
-    $('.weatherVisa').append(visibility + " m");
-    $('.weatherPress').append(pressure + " hPa");
-  }
+function onAPISucces(response) {
+  var description = response.weather[0].description;
+  var temp = response.main.temp;
+  var gevTemp = response.main.feels_like;
+  var windSpeed = response.wind.speed;
+  var visibility = response.visibility;
+  var pressure = response.main.pressure;
+
+  var weatherDes = document.getElementById('weatherDes');
+	weatherDes.innerHTML = description;
+  var weatherTemp = document.getElementById('weatherTemp');
+	weatherTemp.innerHTML = (temp + " °C");
+  var weatherGevTemp = document.getElementById('weatherGevTemp');
+	weatherGevTemp.innerHTML = (gevTemp + " °C");
+  var weatherWind = document.getElementById('weatherWind');
+	weatherWind.innerHTML = (windSpeed + " m/s");
+  var weatherVisa = document.getElementById('weatherVisa');
+	weatherVisa.innerHTML = (visibility + " m");
+  var weatherPress = document.getElementById('weatherPress');
+	weatherPress.innerHTML = (pressure + " hPa");
+}
+
+function onAPIError(error) {
+	console.error('Fetch request failed', error);
+  document.getElementById('btn-weergeven').classList.add('btn-animation');
 }
 
 window.onload = function() {
   myChart();
   showMap();
   setTimer();
-  weatherCallback(weatherData);
 }

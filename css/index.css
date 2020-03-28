@@ -60,7 +60,7 @@ h2 {
   display: flex;
   align-self: flex-end;
   width: 80px;
-  height: 25.58px;
+  height: 25.1px;
   background-color: #37E39F;
   text-decoration: none;
   padding: 7px 10px 0px 20px;
@@ -70,12 +70,22 @@ h2 {
   text-align: center;
   font-size: 14px;
   position: relative;
-  top: -52.5px;
+  top: -52px;
   left: 40px;
 }
 #btn-weergeven:hover {
   background-color: #36d495;
 }
+.btn-animation {
+  animation: glowing 300ms 4;
+}
+@keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 15px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+
 .header-flex {
   display: flex;
   flex-direction: column;
@@ -399,6 +409,12 @@ h4 {
   margin-top: 0px;
 }
 
+/* .restaurants {
+  grid-column: 1/13;
+  grid-row: 9;
+  padding: 0px 10px;
+  margin-top: 50px;
+} */
 
 /*///// FOOTER /////*/
 .footer {
