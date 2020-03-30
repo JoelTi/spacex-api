@@ -409,7 +409,7 @@ h4 {
   margin-top: 0px;
 }
 
-/* .googlemaps {
+.googlemaps {
   grid-column: 1/13;
   grid-row: 9;
   padding: 0px 10px;
@@ -420,9 +420,9 @@ h4 {
 #googlemap {
   height: 100%;
   border-radius: 8px;
-} */
+}
 
-/*///// FOOTER /////*/ 
+/*///// FOOTER /////*/
 .footer {
   grid-column: 1/13;
   grid-row: 10;
