@@ -1,6 +1,6 @@
 function showMap() {
   var map = tt.map({
-    key: 'YGOSC3vaMIRj32nNnQoYktX5D3svhpM2',
+    key: '2W0tot7r2PRIPMIkrBmPYXDPrC24AfKj',
     container: 'map',
     style: 'tomtom://vector/1/basic-main',
     center: [8, 51],
@@ -8,7 +8,7 @@ function showMap() {
   });
 
   var config = {
-    key: 'YGOSC3vaMIRj32nNnQoYktX5D3svhpM2',
+    key: '2W0tot7r2PRIPMIkrBmPYXDPrC24AfKj',
     style: 'tomtom://vector/1/relative'
   };
 
@@ -228,6 +228,7 @@ function onAPIError(error) {
 	console.error('Fetch request failed', error);
   document.getElementById('btn-weergeven').classList.add('btn-animation');
 }
+
 
 window.onload = function() {
   myChart();
