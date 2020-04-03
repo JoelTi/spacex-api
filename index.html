@@ -22,9 +22,12 @@
     <!-- <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 
+    <!-- mapbox api -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js" defer></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
 
 
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/index.js" defer></script>
   </head>
   <body class="grid-container bg-image">
     <header>
@@ -143,9 +146,12 @@
     <section class="landing-section">
       <h4>Landingsplekken</h4>
       <div class="landings-box">
-        <div id='map' class='map'></div>
+        <!-- <div id='map' class='map'></div>
         <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.49.1/maps/maps-web.min.js'></script>
-    <script type='text/javascript' src='../assets/js/mobile-or-tablet.js'></script>
+        <script type='text/javascript' src='../assets/js/mobile-or-tablet.js'></script> -->
+        <div id='map' class='map'></div>
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css" type="text/css"/>
       </div>
     </section>
 
@@ -221,7 +227,7 @@
       </div>
     </section>
 
-    <section class="googlemaps">
+    <!-- <section class="googlemaps">
       <div id="googlemap"></div>
         <script>
           var map;
@@ -234,7 +240,7 @@
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQPUuvF1AeUs7lN26ODXPNY4D1FGRDxOc&callback=initMap"
         async defer></script>
-    </section>
+    </section> -->
 
 
     <!-- GRID SECTION FOOTER -->
