@@ -8,6 +8,7 @@ body {
   min-width: 340px;
 }
 
+
 /*///// GRID STRUCTUUR /////*/
 .grid-container {
   display: grid;
@@ -23,6 +24,7 @@ body {
   background-position: center;
   height: 430px;
 }
+
 
 /*///// HEADER /////*/
 header {
@@ -84,8 +86,6 @@ h2 {
   50% { background-color: #FF0000; box-shadow: 0 0 15px #FF0000; }
   100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
 }
-
-
 .header-flex {
   display: flex;
   flex-direction: column;
@@ -197,6 +197,7 @@ h3 {
   font-size: 30px;
 }
 
+
 /*///// TIME SECTION /////*/
 .time-section {
   grid-column: 1/13;
@@ -229,6 +230,7 @@ h4 {
   top: -40px;
   left: -30px;
 }
+
 
 /*///// HERSTEL CHART SECTION /////*/
 .herstel-section {
@@ -368,7 +370,6 @@ h4 {
 }
 
 
-
 /*///// ALARM SECTION /////*/
 .alarm-section {
   grid-column: 1/13;
@@ -409,23 +410,11 @@ h4 {
   margin-top: 0px;
 }
 
-/* .googlemaps {
-  grid-column: 1/13;
-  grid-row: 9;
-  padding: 0px 10px;
-  margin-top: 50px;
-  max-width: 100%;
-  height: 500px;
-}
-#googlemap {
-  height: 100%;
-  border-radius: 8px;
-} */
 
 /*///// FOOTER /////*/
 .footer {
   grid-column: 1/13;
-  grid-row: 10;
+  grid-row: 9;
   padding: 0px 10px;
   margin-top: 50px;
   background: linear-gradient(90deg, #430AFF 0%, #8160EF 100%);
