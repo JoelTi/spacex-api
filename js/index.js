@@ -184,14 +184,8 @@ function myChart() {
 
 
 function getAPIdata() {
-	var cityName = document.getElementById('cityName').value;
-	var request = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&lang=nl&appid=2e01b71c029b8c3583b3b30f67650ee5';
-
-  // var button =  document.getElementById('btn-weergeven');
-  // console.log(button);
-  // button.addEventListener("click",function(){
-  //   onAPIError(error);
-  // });
+	let cityName = document.getElementById('cityName').value;
+	let request = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&lang=nl&appid=2e01b71c029b8c3583b3b30f67650ee5';
 
 	fetch(request)
 	.then(function(response) {
@@ -258,7 +252,7 @@ function showMapBox() {
         container: 'map',
         style: 'mapbox://styles/16071921/ck8k3ogui2j421imhhosx0q22',
 				center: [50, 50],
-				zoom: 1.5,
+				zoom: 1.9,
     });
 
     var size = 200;
@@ -333,7 +327,7 @@ function showMapBox() {
     };
 
     map.on('load', function() {
-        map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2.5 });
+        map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2.1 });
 
         map.addSource('points', {
             'type': 'geojson',
@@ -414,7 +408,7 @@ function showMapBox() {
 
 
     // Weerinformatie verschillende steden
-    var cities = [
+    let cities = [
   {
     name: 'Amsterdam',
     coordinates: [4.895168, 52.370216]
