@@ -485,8 +485,8 @@ function showMapBox() {
   },
 ];
 
-var openWeatherMapUrl = 'https://api.openweathermap.org/data/2.5/weather';
-var openWeatherMapUrlApiKey = '2e01b71c029b8c3583b3b30f67650ee5';
+let openWeatherMapUrl = 'https://api.openweathermap.org/data/2.5/weather';
+let openWeatherMapUrlApiKey = '2e01b71c029b8c3583b3b30f67650ee5';
 
 map.on('load', function () {
   cities.forEach(function(city) {

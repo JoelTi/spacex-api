@@ -523,3 +523,13 @@ h4 {
     width: 5em;
   }
 }
+
+@media only screen and (min-width: 1325px) {
+  .scrolling-wrapper-flexbox .card {
+    flex: auto;
+  }
+  .card {
+    width: calc(16.666% - 40px);
+    flex: auto;
+  }
+}
