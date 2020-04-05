@@ -234,8 +234,20 @@ function onAPIError(error) {
 	console.error('Fetch request failed', error);
 
   document.getElementById('btn-weergeven').classList.add('btn-animation');
+  setTimeout(function(){ document.getElementById('btn-weergeven').classList.remove('btn-animation'); }, 2000);
 
-  setInterval(function(){ document.getElementById('btn-weergeven').classList.remove('btn-animation'); }, 2000);
+  var weatherDes = document.getElementById('weatherDes');
+	weatherDes.innerHTML = "";
+  var weatherTemp = document.getElementById('weatherTemp');
+	weatherTemp.innerHTML = "";
+  var weatherGevTemp = document.getElementById('weatherGevTemp');
+	weatherGevTemp.innerHTML = "";
+  var weatherWind = document.getElementById('weatherWind');
+	weatherWind.innerHTML = "";
+  var weatherVisa = document.getElementById('weatherVisa');
+	weatherVisa.innerHTML = "";
+  var weatherPress = document.getElementById('weatherPress');
+	weatherPress.innerHTML = "";
 }
 
 
@@ -321,7 +333,7 @@ function showMapBox() {
     };
 
     map.on('load', function() {
-        map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 3 });
+        map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2.5 });
 
         map.addSource('points', {
             'type': 'geojson',
@@ -330,9 +342,14 @@ function showMapBox() {
                 'features': [
                     {
                         'type': 'Feature',
+                        'properties': {
+                          'description':
+                          '<strong>Landingsplek beschikbaar!</strong><br /><p>Landingsplek met de volgende coordinaten long:70.58, lat:41.92 is klaar om te landen. Een veilige terugreis!</p> '
+
+                          },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [70, 50]
+                            'coordinates': [50.88, 38.92]
                         }
                     }
                 ]
@@ -346,11 +363,41 @@ function showMapBox() {
                 'icon-image': 'pulsing-dot'
             }
         });
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'points', function(e) {
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          var description = e.features[0].properties.description;
+
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'points', function() {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'points', function() {
+        map.getCanvas().style.cursor = '';
+        });
+
 				map.addControl(
 					new MapboxGeocoder({
 					accessToken: mapboxgl.accessToken,
 					mapboxgl: mapboxgl
-					})
+					}),
+          'top-left'
 				);
 				map.addControl(
 					new mapboxgl.NavigationControl()
@@ -364,7 +411,139 @@ function showMapBox() {
 					})
 				);
     });
+
+
+    // Weerinformatie verschillende steden
+    var cities = [
+  {
+    name: 'Amsterdam',
+    coordinates: [4.895168, 52.370216]
+  },
+  {
+    name: 'New York',
+    coordinates: [-73.9808, 40.7648]
+  },
+  {
+    name: 'Tokyo',
+    coordinates: [139.6917, 35.689506]
+  },
+  {
+    name: 'Jakarta',
+    coordinates: [106.8270734, -6.1747565]
+  },
+  {
+    name: 'Karachi',
+    coordinates: [67.05, 24.8666667]
+  },
+  {
+    name: 'Seoul',
+    coordinates: [126.941893, 37.547895]
+  },
+  {
+    name: 'Delhi',
+    coordinates: [77.2153959, 28.6269628]
+  },
+  {
+    name: 'Shanghai',
+    coordinates: [121.4696539, 31.2315708]
+  },
+  {
+    name: 'Manilla',
+    coordinates: [18.133396, 59.323263]
+  },
+  {
+    name: 'Kiev',
+    coordinates: [30.5234, 50.4501]
+  },
+  {
+    name: 'Astana',
+    coordinates: [71.4240419, 51.1772557]
+  },
+  {
+    name: 'Moskow',
+    coordinates: [37.60946, 55.7615902]
+  },
+  {
+    name: 'Tripoli',
+    coordinates: [13.1890869, 32.8934258]
+  },
+  {
+    name: 'Rome',
+    coordinates: [12.4935467, 41.8892943]
+  },
+  {
+    name: 'Rio de Janeiro',
+    coordinates: [-43.2399357, -22.894872]
+  },
+  {
+    name: 'Sidney',
+    coordinates: [151.2061827, -33.8727496]
+  },
+  {
+    name: 'Kinshasa',
+    coordinates: [15.315, -4.3297222]
+  },
+];
+
+var openWeatherMapUrl = 'https://api.openweathermap.org/data/2.5/weather';
+var openWeatherMapUrlApiKey = '2e01b71c029b8c3583b3b30f67650ee5';
+
+map.on('load', function () {
+  cities.forEach(function(city) {
+    // Usually you do not want to call an api multiple times, but in this case we have to
+    // because the openWeatherMap API does not allow multiple lat lon coords in one request.
+    var request = openWeatherMapUrl + '?' + 'appid=' + openWeatherMapUrlApiKey + '&lon=' + city.coordinates[0] + '&lat=' + city.coordinates[1];
+
+    // Get current weather based on cities' coordinates
+    fetch(request)
+      .then(function(response) {
+        if(!response.ok) throw Error(response.statusText);
+        return response.json();
+      })
+      .then(function(response) {
+        // Then plot the weather response + icon on MapBox
+        plotImageOnMap(response.weather[0].icon, city)
+      })
+      .catch(function (error) {
+        console.log('ERROR:', error);
+      });
+  });
+});
+
+function plotImageOnMap(icon, city) {
+  map.loadImage(
+
+ 'http://openweathermap.org/img/w/' + icon + '.png',
+    function (error, image) {
+      if (error) throw error;
+      map.addImage("weatherIcon_" + city.name, image);
+      map.addSource("point_" + city.name, {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [{
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: city.coordinates
+            }
+          }]
+        }
+      });
+      map.addLayer({
+        id: "points_" + city.name,
+        type: "symbol",
+        source: "point_" + city.name,
+        layout: {
+          "icon-image": "weatherIcon_" + city.name,
+          "icon-size": 1.2
+        }
+      });
+    }
+  );
 }
+}
+
 
 window.onload = function() {
   myChart();

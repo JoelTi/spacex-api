@@ -477,7 +477,7 @@ h4 {
     margin-top: 50px;
   }
   .landings-box {
-    height: calc(100% - 50px);
+    height: calc(100% - 57px);
     border-radius: 8px;
   }
 
@@ -506,9 +506,8 @@ h4 {
     justify-content: flex-start;
     align-self: flex-end;
   }
-
-
 }
+
 @media only screen and (min-width: 1200px) {
   .bg-image {
     height: 380px;
