@@ -25,30 +25,31 @@
 // }
 
 function setTimer() {
-  var time = document.getElementsByTagName('time')[0],
-    seconds = 19, minutes = 32, hours = 1,
-    t;
+  var countDownDate = new Date("May 15, 2020 15:37:25").getTime();
 
-  function add() {
-    seconds++;
-    if (seconds >= 60) {
-      seconds = 0;
-      minutes++;
-      if (minutes >= 60) {
-          minutes = 0;
-          hours++;
-      }
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for hours, minutes and seconds
+    var hours = Math.floor((distance % (60 * 60 * 1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("time").innerHTML = hours + "<small>h</small> " + minutes + "<small>m</small> " + seconds + "<small>s</small>";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("time").innerHTML = "GELAND!";
     }
-
-    time.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-    timer();
-  }
-
-  function timer() {
-    t = setTimeout(add, 1000);
-  }
-
-  timer();
+  }, 1000);
 }
 
 function myChart() {
@@ -506,7 +507,6 @@ map.on('load', function () {
 
 function plotImageOnMap(icon, city) {
   map.loadImage(
-
  'http://openweathermap.org/img/w/' + icon + '.png',
     function (error, image) {
       if (error) throw error;
