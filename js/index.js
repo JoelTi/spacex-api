@@ -497,7 +497,7 @@ map.on('load', function () {
       })
       .then(function(response) {
         // Then plot the weather response + icon on MapBox
-        plotImageOnMap(response.weather[0].icon, city)
+        plotImageOnMap(response.weather[0].icon, city);
       })
       .catch(function (error) {
         console.log('ERROR:', error);
