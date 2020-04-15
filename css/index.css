@@ -536,6 +536,9 @@ h4 {
   h4 {
     font-size: 30px;
   }
+  .notificatie > h4 {
+    font-size: 20px;
+  }  
   .landings-box {
     height: calc(100% - 82px);
   }

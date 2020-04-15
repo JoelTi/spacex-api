@@ -1,29 +1,3 @@
-// function showMap() {
-//   var map = tt.map({
-//     key: '2W0tot7r2PRIPMIkrBmPYXDPrC24AfKj',
-//     container: 'map',
-//     style: 'tomtom://vector/1/basic-main',
-//     center: [8, 51],
-//     zoom: 4
-//   });
-//
-//   var config = {
-//     key: '2W0tot7r2PRIPMIkrBmPYXDPrC24AfKj',
-//     style: 'tomtom://vector/1/relative'
-//   };
-//
-//   map.on('load', function() {
-//     map.addTier(new tt.TrafficFlowTilesTier(config));
-//   });
-//   map.addControl(new tt.GeolocateControl({
-//    positionOptions: {
-//      enableHighAccuracy: true
-//    },
-//     trackUserLocation: true
-//   }));
-//
-// }
-
 function setTimer() {
   var countDownDate = new Date("May 15, 2020 15:37:25").getTime();
 
@@ -148,41 +122,6 @@ function myChart() {
     }
   });
 }
-
-// function getWeather() {
-//
-//   $('.weatherDes').html('');
-//   $('.weatherTemp').html('');
-//   $('.weatherGevTemp').html('');
-//   $('.weatherWind').html('');
-//   $('.weatherVisa').html('');
-//   $('.weatherPress').html('');
-//
-//   var cityName = $('#cityName').val();
-//   var apiCall = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&lang=nl&appid=2e01b71c029b8c3583b3b30f67650ee5';
-//
-//   $.getJSON(apiCall, weatherCallback);
-//
-//   function weatherCallback(weatherData) {
-//     var cityName = weatherData.name;
-//     var country = weatherData.sys.country;
-//
-//     var description = weatherData.weather[0].description;
-//     var temp = weatherData.main.temp;
-//     var gevTemp = weatherData.main.feels_like;
-//     var windSpeed = weatherData.wind.speed;
-//     var visibility = weatherData.visibility;
-//     var pressure = weatherData.main.pressure;
-//
-//     $('.weatherDes').append(description);
-//     $('.weatherTemp').append(temp + " °C");
-//     $('.weatherGevTemp').append(gevTemp + " °C");
-//     $('.weatherWind').append(windSpeed + " m/s");
-//     $('.weatherVisa').append(visibility + " m");
-//     $('.weatherPress').append(pressure + " hPa");
-//   }
-// }
-
 
 function getAPIdata() {
 	let cityName = document.getElementById('cityName').value;
